@@ -10,6 +10,11 @@ const routes: RouteRecordRaw[] = [
     name: 'demo',
     component: () => import('@/pages/demo.vue'),
   },
+  {
+    path: '/ai-doctor-demo',
+    name: 'ai-doctor-demo',
+    component: () => import('@/pages/ai-doctor-demo/index.vue'),
+  },
 ]
 
 const router = createRouter({
