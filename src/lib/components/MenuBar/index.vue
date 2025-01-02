@@ -27,6 +27,8 @@ const menuBarSpecs = computed(() => {
   const extensions = props.editor?.extensionManager.extensions || []
   const componentSpecNameList = formatMenuInput(props.menuBar)
 
+  console.log('extensions', extensions)
+
   return componentSpecNameList
     .map((name) => extensions?.find((ext) => ext.name === name))
     .filter((item) => !!item)

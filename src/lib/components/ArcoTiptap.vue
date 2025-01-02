@@ -15,6 +15,7 @@ import Paragraph from '@tiptap/extension-paragraph'
 import TextStyle from '@tiptap/extension-text-style'
 import Bold from '../extensions/bold'
 import FontSize from '../extensions/font-size'
+import Image from '../extensions/image-resize'
 
 import MenuBar from './MenuBar/index.vue'
 import { DEFAULT_MENU_BAR } from '../constants'
@@ -28,6 +29,6 @@ const props = defineProps({
 
 const editor = useEditor({
   content: '',
-  extensions: [Document, Text, Paragraph, TextStyle, Bold, FontSize],
+  extensions: [Document, Text, Paragraph, TextStyle, Bold, FontSize, Image],
 })
 </script>
