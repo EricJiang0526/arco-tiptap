@@ -30,6 +30,9 @@ const SelectTag = Node.create({
       placeholder: {
         default: '展示',
       },
+      nodeType: {
+        default: 0,
+      },
     }
   },
 
