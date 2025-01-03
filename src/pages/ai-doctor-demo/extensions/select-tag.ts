@@ -27,11 +27,12 @@ const SelectTag = Node.create({
 
   addAttributes() {
     return {
+      ...this.parent?.(),
       placeholder: {
         default: '展示',
       },
       nodeType: {
-        default: 0,
+        default: '0',
       },
     }
   },

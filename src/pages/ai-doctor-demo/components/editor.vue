@@ -1,6 +1,6 @@
 <template>
   <div class="editor-container">
-    <EditorContent :editor="editor" ref="editorRef"></EditorContent>
+    <EditorContent :editor="editor"></EditorContent>
   </div>
 </template>
 
@@ -11,17 +11,14 @@ import Document from '@tiptap/extension-document'
 import Text from '@tiptap/extension-text'
 import Paragraph from '@tiptap/extension-paragraph'
 import TextStyle from '@tiptap/extension-text-style'
+import History from '@tiptap/extension-history'
 import SelectTag from '../extensions/select-tag'
-
-const name = ref('')
-const tag = ref([])
 
 const editor = useEditor({
   content: '',
-  extensions: [Document, Paragraph, Text, TextStyle, SelectTag],
+  extensions: [Document, Paragraph, Text, TextStyle, History, SelectTag],
+  onCreate() {},
 })
-
-const editorRef = ref(null)
 
 const addParagraph = () => {
   const content = `帮我为<select-tag nodeType="2">王六</select-tag>这位患者生成一份健康报告，患者的标签特征有<select-tag nodeType="1">头晕</select-tag><span></span><select-tag nodeType="1">耳鸣</select-tag>，报告内容包括基本信息、健康史、健康状况评估、健康建议、注意事项等。`
@@ -76,6 +73,7 @@ defineExpose({ addWord, addParagraph, getText })
   border-radius: 8px;
   :deep(.tiptap) {
     outline: none;
+    line-height: 24px;
   }
 }
 </style>
