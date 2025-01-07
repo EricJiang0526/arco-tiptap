@@ -1,12 +1,7 @@
 <template>
   <node-view-wrapper as="span" select-tag :class="['select-tag']">
-    <span contenteditable="false">&nbsp;</span>
-
     <node-view-content as="span" select-tag-text class="select-tag-text"> </node-view-content>
-
-    <span contenteditable="false">&nbsp;</span>
     <span contenteditable="false">
-      {{ node.attrs.placeholder }}
       <span contenteditable="false">&nbsp;</span>
     </span>
   </node-view-wrapper>
@@ -14,8 +9,11 @@
 
 <script setup lang="ts">
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
+import { watch } from 'vue'
 
 const props = defineProps(nodeViewProps)
+
+watch(() => props.node, console.log)
 </script>
 
 <style lang="less" scoped>

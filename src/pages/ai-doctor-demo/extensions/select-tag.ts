@@ -12,15 +12,37 @@ const SelectTag = Node.create({
 
   content: 'inline*',
 
-  renderHTML({ HTMLAttributes }) {
-    return ['select-tag', mergeAttributes(HTMLAttributes), 0]
+  renderHTML({ HTMLAttributes, node }) {
+    return [
+      'span',
+      {
+        class: 'select-tag',
+        style: `color: rgb(22, 93, 255);
+                background-color: rgb(232, 243, 255);
+                line-height: 20px;
+                border-radius: 4px;
+                min-width: 20px;`,
+      },
+      ['span', { contenteditable: 'false' }, ' '],
+      ['span', { class: 'select-tag-text' }, 0],
+      ['span', { contenteditable: 'false' }, ' '],
+      [
+        'span',
+        {
+          contenteditable: 'false',
+          class: 'select-tag-placeholder',
+          style: 'display: none',
+        },
+        HTMLAttributes.placeholder,
+      ],
+    ]
   },
 
   // 解析 HTML
   parseHTML() {
     return [
       {
-        tag: 'select-tag',
+        tag: 'span.select-tag',
       },
     ]
   },
@@ -29,17 +51,29 @@ const SelectTag = Node.create({
     return {
       ...this.parent?.(),
       placeholder: {
-        default: '展示',
+        default: '',
+        parseHTML: (element) => element.getAttribute('placeholder'),
       },
       nodeType: {
         default: '0',
+        parseHTML: (element) => element.getAttribute('node-type'),
       },
     }
   },
 
-  addNodeView() {
-    return VueNodeViewRenderer(SelectTagComponent)
+  onUpdate({ editor }) {
+    editor.state.doc.descendants((node, pos) => {
+      if (node.type.name === 'selectTag') {
+        if (node.content.size === 0) {
+          console.log(editor)
+        }
+      }
+    })
   },
+
+  // addNodeView() {
+  //   return VueNodeViewRenderer(SelectTagComponent)
+  // },
 })
 
 export default SelectTag

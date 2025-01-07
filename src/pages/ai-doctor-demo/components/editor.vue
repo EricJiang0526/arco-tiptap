@@ -21,7 +21,7 @@ const editor = useEditor({
 })
 
 const addParagraph = () => {
-  const content = `帮我为<select-tag nodeType="2">王六</select-tag>这位患者生成一份健康报告，患者的标签特征有<select-tag nodeType="1">头晕</select-tag><span></span><select-tag nodeType="1">耳鸣</select-tag>，报告内容包括基本信息、健康史、健康状况评估、健康建议、注意事项等。`
+  const content = `帮我为<span class="select-tag" placeholder="患者名字">666</span><span>这位患者生成一份健康报告，患者的标签特征有</span><span class="select-tag" placeholder="症状" node-type="1">头晕</span>，报告内容包括基本信息、健康史、健康状况评估、健康建议、注意事项等。`
   editor.value?.chain().insertContent(content).focus().run()
 }
 
